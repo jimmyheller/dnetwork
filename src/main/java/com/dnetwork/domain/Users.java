@@ -6,7 +6,7 @@ import org.springframework.data.annotation.Id;
 public class Users {
 
     @Id
-    private int id;
+    private String id;
 
     private String userName;
 
@@ -25,8 +25,7 @@ public class Users {
     public Users() {
     }
 
-    public Users(int id, String userName, String name, String given_name, String family_name, String picture, String locale, String principal) {
-        this.id = id;
+    public Users( String userName, String name, String given_name, String family_name, String picture, String locale, String principal) {
         this.userName = userName;
         this.name = name;
         this.given_name = given_name;
@@ -34,14 +33,6 @@ public class Users {
         this.picture = picture;
         this.locale = locale;
         this.principal = principal;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getUserName() {

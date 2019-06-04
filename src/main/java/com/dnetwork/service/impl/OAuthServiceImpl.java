@@ -25,7 +25,6 @@ public class OAuthServiceImpl implements OAuthService {
         Map<String, Object> details = (Map<String, Object>) ((OAuth2Authentication) principal).getUserAuthentication().getDetails();
         System.out.println(principal.getName()+"   "+details.get("email"));
         Users user = new Users();
-
         user.setUserName((String) details.get("email"));
         user.setName((String) details.get("name"));
         user.setGiven_name((String)details.get("given_name"));
