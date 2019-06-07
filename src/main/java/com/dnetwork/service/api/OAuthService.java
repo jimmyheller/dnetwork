@@ -1,11 +1,11 @@
 package com.dnetwork.service.api;
 
-import com.dnetwork.domain.Users;
+import com.dnetwork.domain.DNetUser;
 
 import java.security.Principal;
 
+
 public interface OAuthService {
 
-    public void saveUserLoginData(Principal principal);
-
+    DNetUser registerAsGmailUser(Principal principal);
 }
