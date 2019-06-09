@@ -40,6 +40,7 @@ public class GmailOAuthController {
         } catch (Exception q) {
             logger.error("GmailOAuthController#RegisterUser -> unhandled error in registering the user.");
             response.setResponseCode(GENERAL_EXCEPTION);
+            response.setMessage("there was a unhandled error in oAuth platform.");
         }
 
         return response;
