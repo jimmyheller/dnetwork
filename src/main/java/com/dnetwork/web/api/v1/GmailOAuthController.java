@@ -3,19 +3,18 @@ package com.dnetwork.web.api.v1;
 
 import com.dnetwork.domain.DNetUser;
 import com.dnetwork.service.api.OAuthService;
-import com.dnetwork.web.DNetworkResponse;
+import com.dnetwork.web.object.DNetworkResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.security.Principal;
 
-import static com.dnetwork.web.DNetworkResponse.GENERAL_EXCEPTION;
-import static com.dnetwork.web.DNetworkResponse.SUCCESS;
+import static com.dnetwork.web.object.DNetworkResponse.GENERAL_EXCEPTION;
+import static com.dnetwork.web.object.DNetworkResponse.SUCCESS;
 
 @Controller
 @RequestMapping("/api/v1/oauth/gmail")

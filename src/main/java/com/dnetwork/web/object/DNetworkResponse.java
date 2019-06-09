@@ -1,4 +1,4 @@
-package com.dnetwork.web;
+package com.dnetwork.web.object;
 
 public class DNetworkResponse<T> {
     public static final int SUCCESS = 0;
