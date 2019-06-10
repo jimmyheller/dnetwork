@@ -5,6 +5,7 @@ import com.dnetwork.domain.DNetUserAuthenticationDetail;
 import com.dnetwork.domain.DNetUserAuthenticationDetailRepository;
 import com.dnetwork.domain.DNetUserRepository;
 import com.dnetwork.service.api.OAuthService;
+import org.springframework.data.mongodb.config.EnableMongoAuditing;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.security.oauth2.provider.authentication.OAuth2AuthenticationDetails;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,7 @@ import java.security.Principal;
 import java.util.Map;
 
 @Service
+@EnableMongoAuditing
 public class OAuthServiceImpl implements OAuthService {
 
     private static final String GMAIL_USER_TYPE = "GMAIL";
