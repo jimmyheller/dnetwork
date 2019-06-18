@@ -7,17 +7,18 @@ import com.dnetwork.web.object.DNetworkResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import static com.dnetwork.web.object.DNetworkResponse.GENERAL_EXCEPTION;
 import static com.dnetwork.web.object.DNetworkResponse.SUCCESS;
 
 @Controller
-@RequestMapping("/api/v1/oauth/gmail")
 public class GmailOAuthController {
 
     private final OAuthService oAuthService;
@@ -29,21 +30,28 @@ public class GmailOAuthController {
 
 
     @GetMapping
+    @RequestMapping({ "/api/v1/oauth"})
     public @ResponseBody
-    DNetworkResponse<DNetUser> RegisterUser(Principal principal) {
+    Map<String, String> user(Principal principal) {
         DNetworkResponse<DNetUser> response = new DNetworkResponse<>();
         try {
-            logger.info("GmailOAuthController#RegisterUser -> requesting to register the user with {}", principal);
+            logger.info("OAuthController#RegisterUser -> requesting to register the user with {}", principal);
             DNetUser user = oAuthService.registerAsGmailUser(principal);
             response.setData(user);
             response.setResponseCode(SUCCESS);
         } catch (Exception q) {
-            logger.error("GmailOAuthController#RegisterUser -> unhandled error in registering the user.");
+            logger.error("OAuthController#RegisterUser -> unhandled error in registering the user.");
             response.setResponseCode(GENERAL_EXCEPTION);
             response.setMessage("there was a unhandled error in oAuth platform.");
         }
 
-        return response;
+
+
+
+        Map<String, String> map = new LinkedHashMap<>();
+        map.put("name", principal.getName());
+        return map;
     }
+
 
 }

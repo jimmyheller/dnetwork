@@ -19,6 +19,7 @@ import java.util.Map;
 public class OAuthServiceImpl implements OAuthService {
 
     private static final String GMAIL_USER_TYPE = "GMAIL";
+    private static final String GITHUB_USER_TYPE = "GITHUB";
     private final DNetUserRepository repository;
     private final DNetUserAuthenticationDetailRepository dnetUserAuthenticationDetailRepository;
 
@@ -34,7 +35,15 @@ public class OAuthServiceImpl implements OAuthService {
     public DNetUser registerAsGmailUser(Principal principal) {
         OAuth2Authentication authentication = ((OAuth2Authentication) principal);
 
+
         Map<String, Object> authenticationDetails = (Map<String, Object>) authentication.getUserAuthentication().getDetails();
+         String userType  = null;
+
+        if(((OAuth2Authentication) principal).getUserAuthentication().isAuthenticated() == true)  {
+            if (authenticationDetails.get("email") != null) userType = GMAIL_USER_TYPE;
+            else userType = GITHUB_USER_TYPE;
+        }
+
         DNetUser user = repository.findByEmail((String) authenticationDetails.get("email"));
         if (user == null) {
             user = new DNetUser((String) authenticationDetails.get("email"),
@@ -44,7 +53,7 @@ public class OAuthServiceImpl implements OAuthService {
                     (String) authenticationDetails.get("picture"),
                     (String) authenticationDetails.get("locale"),
                     principal.getName(),
-                    GMAIL_USER_TYPE);
+                    userType);
 
             repository.save(user);
         }
