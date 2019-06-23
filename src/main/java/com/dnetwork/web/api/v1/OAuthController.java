@@ -7,32 +7,27 @@ import com.dnetwork.web.object.DNetworkResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
-
 import java.security.Principal;
-import java.util.LinkedHashMap;
-import java.util.Map;
-
 import static com.dnetwork.web.object.DNetworkResponse.GENERAL_EXCEPTION;
 import static com.dnetwork.web.object.DNetworkResponse.SUCCESS;
 
+
 @Controller
-public class GmailOAuthController {
+public class OAuthController {
 
     private final OAuthService oAuthService;
-    private final Logger logger = LoggerFactory.getLogger(GmailOAuthController.class);
+    private final Logger logger = LoggerFactory.getLogger(OAuthController.class);
 
-    public GmailOAuthController(OAuthService oAuthService) {
+    public OAuthController(OAuthService oAuthService) {
         this.oAuthService = oAuthService;
     }
 
 
     @GetMapping
-    @RequestMapping({ "/api/v1/oauth"})
+    @RequestMapping({ "/"})
     public @ResponseBody
-    Map<String, String> user(Principal principal) {
+    DNetworkResponse<DNetUser> RegisterUser(Principal principal) {
         DNetworkResponse<DNetUser> response = new DNetworkResponse<>();
         try {
             logger.info("OAuthController#RegisterUser -> requesting to register the user with {}", principal);
@@ -44,13 +39,7 @@ public class GmailOAuthController {
             response.setResponseCode(GENERAL_EXCEPTION);
             response.setMessage("there was a unhandled error in oAuth platform.");
         }
-
-
-
-
-        Map<String, String> map = new LinkedHashMap<>();
-        map.put("name", principal.getName());
-        return map;
+        return response;
     }
 
 
