@@ -31,10 +31,10 @@ github:
   resource:
     userInfoUri: https://api.github.com/user
 
-logging:
-  level:
-    org.springframework.security: DEBUG
-
+#logging:
+#  level:
+#    org.springframework.security: DEBUG
+#
 
 #Mongo DB Configuration
 spring:
