@@ -7,5 +7,7 @@ import java.security.Principal;
 
 public interface OAuthService {
 
-    DNetUser registerAsGmailUser(Principal principal);
+    DNetUser registerAsUser(Principal principal);
+
+
 }

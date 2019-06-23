@@ -23,7 +23,6 @@ public class OAuthController {
         this.oAuthService = oAuthService;
     }
 
-
     @GetMapping
     @RequestMapping({ "/"})
     public @ResponseBody
@@ -31,7 +30,7 @@ public class OAuthController {
         DNetworkResponse<DNetUser> response = new DNetworkResponse<>();
         try {
             logger.info("OAuthController#RegisterUser -> requesting to register the user with {}", principal);
-            DNetUser user = oAuthService.registerAsGmailUser(principal);
+            DNetUser user = oAuthService.registerAsUser(principal);
             response.setData(user);
             response.setResponseCode(SUCCESS);
         } catch (Exception q) {
@@ -41,6 +40,5 @@ public class OAuthController {
         }
         return response;
     }
-
 
 }

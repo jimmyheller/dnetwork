@@ -1,5 +1,6 @@
 package com.dnetwork.domain;
 
+import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
@@ -7,4 +8,5 @@ import org.springframework.stereotype.Repository;
 public interface DNetUserRepository extends MongoRepository<DNetUser, Integer> {
 
     DNetUser findByEmail(String email);
+    DNetUser findById(String id);
 }

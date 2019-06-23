@@ -32,7 +32,7 @@ public class OAuthServiceImpl implements OAuthService {
 
     @Override
     @Transactional
-    public DNetUser registerAsGmailUser(Principal principal) {
+    public DNetUser registerAsUser(Principal principal) {
         OAuth2Authentication authentication = ((OAuth2Authentication) principal);
 
 
