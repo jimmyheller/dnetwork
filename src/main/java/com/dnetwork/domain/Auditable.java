@@ -18,4 +18,6 @@ public class Auditable {
     public void setCreatedDate(String createdDate) {
         this.createdDate = createdDate;
     }
+
+    public void testCommit() {}
 }
