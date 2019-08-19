@@ -1,0 +1,37 @@
+<html lang="en">
+<head>
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id"
+          content="156075602639-bhbocn020fbv6lfmi3qb7s3a5f8efk25.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/4.12.0/bootstrap-social.min.css">
+
+    <script src="scripts/google-sign-in.js"></script>
+</head>
+<body>
+<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+
+<div class="row">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4">
+        <form>
+            <div class="form-group">
+                <input id="fullName" type="text" class="form-control"/>
+                <input id="givenName" type="text" class="form-control"/>
+                <input id="familyName" type="text" class="form-control"/>
+                <input id="imageUrl" type="text" hidden/>
+                <input id="email" type="text" class="form-control"/>
+                <button id="registerFormSubmitBtn" type="submit" class="btn btn-success">Sign In</button>
+            </div>
+        </form>
+    </div>
+    <div class="col-sm-4"></div>
+</div>
+
+
+</body>
+</html>

@@ -7,8 +7,11 @@ import com.dnetwork.web.object.DNetworkResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
-import java.security.Principal;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import static com.dnetwork.web.object.DNetworkResponse.GENERAL_EXCEPTION;
 import static com.dnetwork.web.object.DNetworkResponse.SUCCESS;
 
@@ -21,17 +24,20 @@ public class OAuthController {
 
     public OAuthController(OAuthService oAuthService) {
         this.oAuthService = oAuthService;
+
     }
 
-    @GetMapping
-    @RequestMapping({ "/"})
+
+    @PostMapping
+    @RequestMapping("oauth/google")
     public @ResponseBody
-    DNetworkResponse<DNetUser> RegisterUser(Principal principal) {
+    DNetworkResponse<DNetUser> RegisterUser(@RequestBody DNetUser user) {
         DNetworkResponse<DNetUser> response = new DNetworkResponse<>();
         try {
-            logger.info("OAuthController#RegisterUser -> requesting to register the user with {}", principal);
-            DNetUser user = oAuthService.registerAsUser(principal);
+            logger.info("request body -> {}", user);
+
             response.setData(user);
+
             response.setResponseCode(SUCCESS);
         } catch (Exception q) {
             logger.error("OAuthController#RegisterUser -> unhandled error in registering the user.");
