@@ -12,12 +12,7 @@ public class Auditable {
         return createdDate;
     }
 
-
-
-
     public void setCreatedDate(String createdDate) {
         this.createdDate = createdDate;
     }
-
-    public void testCommit() {}
 }

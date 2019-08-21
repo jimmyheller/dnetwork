@@ -18,8 +18,8 @@ import java.util.Map;
 @EnableMongoAuditing
 public class OAuthServiceImpl implements OAuthService {
 
-    private static final String GOOGLE_USER_TYPE = "GOOGLE";
-    private static final String GITHUB_USER_TYPE = "GITHUB";
+    private static final String GMAIL_USER_TYPE = "GMAIL";
+
     private final DNetUserRepository repository;
     private final DNetUserAuthenticationDetailRepository dnetUserAuthenticationDetailRepository;
 
@@ -33,21 +33,37 @@ public class OAuthServiceImpl implements OAuthService {
     @Override
     @Transactional
     public DNetUser registerAsUser(Principal principal) {
+        DNetUser user = null;
         OAuth2Authentication authentication = ((OAuth2Authentication) principal);
 
 
         Map<String, Object> authenticationDetails = (Map<String, Object>) authentication.getUserAuthentication().getDetails();
-         String userType  = null;
 
-        if(((OAuth2Authentication) principal).getUserAuthentication().isAuthenticated() == true)  {
-            if (authenticationDetails.get("email") != null) userType = GOOGLE_USER_TYPE;
-            else userType = GITHUB_USER_TYPE;
+
+        if(((OAuth2Authentication) principal).getUserAuthentication().isAuthenticated() == true) {
+            user = repository.findByEmail((String) authenticationDetails.get("email"));
+            if (user == null) {
+                user = new DNetUser((String) authenticationDetails.get("email"),
+                        (String) authenticationDetails.get("name"),
+                        (String) authenticationDetails.get("given_name"),
+                        (String) authenticationDetails.get("family_name"),
+                        (String) authenticationDetails.get("picture"),
+                        (String) authenticationDetails.get("locale"),
+                        principal.getName(),
+                        GMAIL_USER_TYPE);
+
+                repository.save(user);
+            }
+
+            OAuth2AuthenticationDetails details = (OAuth2AuthenticationDetails) authentication.getDetails();
+            DNetUserAuthenticationDetail detail = new DNetUserAuthenticationDetail(
+                    details.getRemoteAddress(),
+                    details.getSessionId(),
+                    details.getTokenType(),
+                    details.getTokenValue(), user.getId());
+            dnetUserAuthenticationDetailRepository.save(detail);
+
         }
-
-        DNetUser user = repository.findByEmail((String) authenticationDetails.get("email"));
-
-
         return user;
-
     }
 }

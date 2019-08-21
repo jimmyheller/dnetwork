@@ -9,7 +9,6 @@ public class DNetUser extends Auditable {
 
     @Id
     private String id;
-    private String fullName;
     private String userName;
     private String email;
     private String name;
@@ -21,7 +20,17 @@ public class DNetUser extends Auditable {
     private String userType;
 
 
-
+    public DNetUser(String email, String name, String givenName, String familyName, String picture, String locale, String principal, String userType) {
+        this.userName = email;
+        this.email = email;
+        this.name = name;
+        this.givenName = givenName;
+        this.familyName = familyName;
+        this.picture = picture;
+        this.locale = locale;
+        this.principal = principal;
+        this.userType = userType;
+    }
 
     public String getId() {
         return id;
@@ -101,14 +110,6 @@ public class DNetUser extends Auditable {
 
     public void setUserType(String userType) {
         this.userType = userType;
-    }
-
-    public String getFullName() {
-        return fullName;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
     }
 
     @Override
