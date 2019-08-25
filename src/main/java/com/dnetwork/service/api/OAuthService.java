@@ -9,5 +9,4 @@ public interface OAuthService {
 
     DNetUser registerAsUser(Principal principal);
 
-
 }

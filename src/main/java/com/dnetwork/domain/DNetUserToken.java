@@ -1,9 +1,14 @@
 package com.dnetwork.domain;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import org.springframework.data.annotation.Id;
 
 import java.util.Objects;
 
+@Getter
+@Setter
 public class DNetUserToken extends Auditable {
     @Id
     private String id;
@@ -30,27 +35,5 @@ public class DNetUserToken extends Auditable {
         this.token = token;
     }
 
-    public String getId() {
-        return id;
-    }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
 }

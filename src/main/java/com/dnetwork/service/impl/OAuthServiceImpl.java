@@ -29,7 +29,6 @@ public class OAuthServiceImpl implements OAuthService {
         this.dnetUserAuthenticationDetailRepository = dnetUserAuthenticationDetailRepository;
     }
 
-
     @Override
     @Transactional
     public DNetUser registerAsUser(Principal principal) {
@@ -66,4 +65,5 @@ public class OAuthServiceImpl implements OAuthService {
         }
         return user;
     }
+
 }

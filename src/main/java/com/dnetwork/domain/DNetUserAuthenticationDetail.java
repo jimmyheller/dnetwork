@@ -1,10 +1,15 @@
 package com.dnetwork.domain;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import org.springframework.data.annotation.Id;
 
 import java.util.Objects;
 
-
+@Getter
+@Setter
+@ToString
 public class DNetUserAuthenticationDetail extends Auditable {
     @Id
     private String id;
@@ -23,55 +28,7 @@ public class DNetUserAuthenticationDetail extends Auditable {
         this.dnetUserId = dnetUserId;
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getRemoteAddress() {
-        return remoteAddress;
-    }
-
-    public void setRemoteAddress(String remoteAddress) {
-        this.remoteAddress = remoteAddress;
-    }
-
-    public String getSessionId() {
-        return sessionId;
-    }
-
-    public void setSessionId(String sessionId) {
-        this.sessionId = sessionId;
-    }
-
-    public String getTokenType() {
-        return tokenType;
-    }
-
-    public void setTokenType(String tokenType) {
-        this.tokenType = tokenType;
-    }
-
-    public String getTokenValue() {
-        return tokenValue;
-    }
-
-    public void setTokenValue(String tokenValue) {
-        this.tokenValue = tokenValue;
-    }
-
-    public String getDnetUserId() {
-        return dnetUserId;
-    }
-
-    public void setDnetUserId(String dnetUserId) {
-        this.dnetUserId = dnetUserId;
-    }
-
-    @Override
+     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -89,15 +46,4 @@ public class DNetUserAuthenticationDetail extends Auditable {
         return Objects.hash(id, remoteAddress, sessionId, tokenType, tokenValue, dnetUserId);
     }
 
-    @Override
-    public String toString() {
-        return "DNetUserAuthenticationDetail{" +
-                "id='" + id + '\'' +
-                ", remoteAddress='" + remoteAddress + '\'' +
-                ", sessionId='" + sessionId + '\'' +
-                ", tokenType='" + tokenType + '\'' +
-                ", tokenValue='" + tokenValue + '\'' +
-                ", dnetUserId='" + dnetUserId + '\'' +
-                '}';
-    }
-}
+ }
