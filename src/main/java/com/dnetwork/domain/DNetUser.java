@@ -3,13 +3,17 @@ package com.dnetwork.domain;
 
 import lombok.*;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.redis.core.RedisHash;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 @Getter
 @Setter
 @ToString
-public class DNetUser extends Auditable {
+@RedisHash("DNetUser")
+public class DNetUser extends Auditable  implements Serializable  {
+    private static long longId = 1;
 
     @Id
     private String id;
@@ -22,9 +26,11 @@ public class DNetUser extends Auditable {
     private String locale;
     private String principal;
     private String userType;
+    private double randomNumber;
 
 
-    public DNetUser(String email, String name, String givenName, String familyName, String picture, String locale, String principal, String userType) {
+    public DNetUser(String id,String email, String name, String givenName, String familyName, String picture, String locale, String principal, String userType,double randomNumber) {
+        this.id = id;
         this.userName = email;
         this.email = email;
         this.name = name;
@@ -34,6 +40,7 @@ public class DNetUser extends Auditable {
         this.locale = locale;
         this.principal = principal;
         this.userType = userType;
+        this.randomNumber = randomNumber;
     }
 
 
