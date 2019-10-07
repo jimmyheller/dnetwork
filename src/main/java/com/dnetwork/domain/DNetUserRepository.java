@@ -3,9 +3,13 @@ package com.dnetwork.domain;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
-@Repository
-public interface DNetUserRepository extends MongoRepository<DNetUser, Integer> {
+import java.util.Map;
 
-    DNetUser findByEmail(String email);
-    DNetUser findById(String id);
+
+public interface DNetUserRepository  {
+
+    void save(DNetUser user);
+
+//    DNetUser findByEmail(String email);
+//    DNetUser findById(String id);
 }

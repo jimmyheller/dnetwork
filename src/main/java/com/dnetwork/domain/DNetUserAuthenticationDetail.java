@@ -5,12 +5,14 @@ import lombok.Setter;
 import lombok.ToString;
 import org.springframework.data.annotation.Id;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 @Getter
 @Setter
 @ToString
-public class DNetUserAuthenticationDetail extends Auditable {
+public class DNetUserAuthenticationDetail extends Auditable implements Serializable {
+    private static long longId = 1;
     @Id
     private String id;
     private String remoteAddress;
@@ -20,7 +22,8 @@ public class DNetUserAuthenticationDetail extends Auditable {
     private String dnetUserId;
 
 
-    public DNetUserAuthenticationDetail(String remoteAddress, String sessionId, String tokenType, String tokenValue, String dnetUserId) {
+    public DNetUserAuthenticationDetail(String id , String remoteAddress, String sessionId, String tokenType, String tokenValue, String dnetUserId) {
+        this.id = id;
         this.remoteAddress = remoteAddress;
         this.sessionId = sessionId;
         this.tokenType = tokenType;

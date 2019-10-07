@@ -14,9 +14,6 @@ public class DNetUserToken extends Auditable {
     private String id;
     private String userId;
     private String token;
-    private String physicalDeviceAddress;
-
-
 
     @Override
     public boolean equals(Object o) {
@@ -25,19 +22,17 @@ public class DNetUserToken extends Auditable {
         DNetUserToken that = (DNetUserToken) o;
         return Objects.equals(id, that.id) &&
                 Objects.equals(userId, that.userId) &&
-                Objects.equals(token, that.token) &&
-                Objects.equals(physicalDeviceAddress, that.physicalDeviceAddress);
+                Objects.equals(token, that.token);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, userId, token,physicalDeviceAddress);
+        return Objects.hash(id, userId, token);
     }
 
-    public DNetUserToken(String userId, String token , String physicalDeviceAddress) {
+    public DNetUserToken(String userId, String token) {
         this.userId = userId;
         this.token = token;
-        this.physicalDeviceAddress = physicalDeviceAddress;
     }
 
 
