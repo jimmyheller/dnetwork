@@ -6,10 +6,8 @@ import org.springframework.stereotype.Repository;
 import java.util.Map;
 
 
-public interface DNetUserRepository  {
+public interface DNetUserRepository {
 
-    void save(DNetUser user);
+    //  void save(DNetUser user);
 
-//    DNetUser findByEmail(String email);
-//    DNetUser findById(String id);
 }

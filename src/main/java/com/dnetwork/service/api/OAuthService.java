@@ -1,12 +1,10 @@
 package com.dnetwork.service.api;
 
-import com.dnetwork.domain.DNetUser;
-
+import java.io.IOException;
 import java.security.Principal;
-import java.util.Map;
 
 
 public interface OAuthService {
 
-    DNetUser registerAsUser(Principal principal);
+    String registerAsUser(Principal principal) throws IOException;
 }

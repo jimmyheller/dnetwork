@@ -27,17 +27,23 @@ public class OAuthController {
     }
 
     @GetMapping
-    @RequestMapping({ "/api/v1/oauth/gmail"})
+    @RequestMapping({"/api/v1/oauth/gmail"})
     public @ResponseBody
-    DNetworkResponse<DNetUser> RegisterUser(Principal principal) {
-        DNetworkResponse<DNetUser> response = new DNetworkResponse<>();
+    DNetworkResponse<String> registerUser(Principal principal) {
+        DNetworkResponse<String> response = new DNetworkResponse<>();
         try {
-            log.info("OAuthController#RegisterUser -> requesting to register the user with {}", principal);
-            DNetUser user = oAuthService.registerAsUser(principal);
-            response.setData(user);
-            response.setResponseCode(SUCCESS);
+            log.debug("OAuthController#RegisterUser -> requesting to register the user with {}", principal);
+            String user = oAuthService.registerAsUser(principal);
+            if (!user.equals("")) {
+                response.setData(user);
+                response.setResponseCode(SUCCESS);
+            } else {
+                response.setResponseCode(GENERAL_EXCEPTION);
+            }
+
+
         } catch (Exception q) {
-            log.error("OAuthController#RegisterUser -> unhandled error in registering the user.");
+            log.error("OAuthController#RegisterUser -> unhandled error in registering the user.",q);
             response.setResponseCode(GENERAL_EXCEPTION);
             response.setMessage("there was a unhandled error in oAuth platform.");
         }
